@@ -18,23 +18,24 @@ public class SortStrings {
 		this.words = words;
 	}
 	
+	/**
+	 * @return A list of words sorted by the number of vowels in each word in ascending order
+	 */
 	public List<String> sortWords() {
 		Collections.sort(words, new Comparator<String>() {
 			public int compare(String s1, String s2) {
 				return (countVowels(s1) < countVowels(s2) ? -1 : countVowels(s1) == countVowels(s2) ? 0 : 1); 
 			}
 		});
+
 		return words;
 	}
 	
+	/**
+	 * @param word The word whose vowels this method will count
+	 * @return The number of vowels in the given input String
+	 */
 	private int countVowels(String word) {
-		int numVowels = 0;
-		for (char c : word.toCharArray()) {
-			// I am assuming for the purposes of this assignment that 'y' is not a vowel
-			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-				numVowels++;
-			}
-		}
-		return numVowels;
+		return (word.length() - (word.replaceAll("[aeiouAEIOU]", "").length()));
 	}
 }
